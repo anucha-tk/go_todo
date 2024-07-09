@@ -15,3 +15,9 @@ precommit.rehooks:
 ci.lint:
 	@echo "== 🙆 ci.linter =="
 	golangci-lint run -v ./... --fix
+
+dev-templ:
+	templ generate -watch -proxy=http://localhost:3000
+
+dev-tailwind:
+	npx tailwindcss -i ./internal/assets/tailwind.css -o ./internal/assets/dist/styles.css --watch
