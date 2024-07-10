@@ -11,7 +11,7 @@ import (
 func routes() *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
-	home.Mount(router, home.NewHandler())
+	home.Mount(router, home.NewHandler(home.NewService()))
 	about.Mount(router, about.NewHandler())
 	assets.Mount(router)
 	return router

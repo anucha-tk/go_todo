@@ -1,0 +1,13 @@
+package partials
+
+import "github.com/anucha-tk/go_todo/internal/domain"
+
+templ RenderTodos(todos []*domain.Todo) {
+	<section id="todos">
+		<ul class="flex flex-col items-center gap-4 pt-4">
+			for _, todo := range todos {
+				<li>{ todo.Description }</li>
+			}
+		</ul>
+	</section>
+}

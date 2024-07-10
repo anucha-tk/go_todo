@@ -11,11 +11,13 @@ type (
 	Handler interface {
 		Home(w http.ResponseWriter, r *http.Request)
 	}
-	handler struct{}
+	handler struct {
+		service Service
+	}
 )
 
-func NewHandler() Handler {
-	return &handler{}
+func NewHandler(svc Service) Handler {
+	return &handler{service: svc}
 }
 
 func Mount(r chi.Router, h Handler) {
@@ -23,7 +25,12 @@ func Mount(r chi.Router, h Handler) {
 }
 
 func (h *handler) Home(w http.ResponseWriter, r *http.Request) {
-	if err := pages.HomePage().Render(r.Context(), w); err != nil {
+	todos, err := h.service.List(r.Context())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	if err := pages.HomePage(todos).Render(r.Context(), w); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }

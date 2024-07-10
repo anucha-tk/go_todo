@@ -3,15 +3,23 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/anucha-tk/go_todo/internal/database"
 )
 
 func main() {
 	port := ":3000"
 	flag.StringVar(&port, "port", port, "port to listen on")
 	flag.Parse()
+
+	// database
+	if err := database.Init(); err != nil {
+		log.Fatalf("cannot connect database: %v", err)
+	}
 
 	router := routes()
 
@@ -21,7 +29,7 @@ func main() {
 		ReadHeaderTimeout: time.Second * 5,
 	}
 
-	fmt.Printf("Listening on http://localhost%s\n", port)
+	log.Printf("Listening on http://localhost%s\n", port)
 
 	if err := server.ListenAndServe(); err != nil {
 		fmt.Println(err)
