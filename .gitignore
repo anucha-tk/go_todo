@@ -6,3 +6,6 @@
 
 # node
 node_modules
+
+#templ
+*_templ.txt
