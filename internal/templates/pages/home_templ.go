@@ -32,6 +32,10 @@ func HomePage() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<section id=\"home\" class=\"flex flex-col items-center gap-8\"><img src=\"/dist/images/todo.svg\" alt=\"todo\" class=\"h-40 mt-10\"><h1 class=\"text-4xl font-bold text-blue-700\">TODO APP</h1></section>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		return templ_7745c5c3_Err
 	})
 }

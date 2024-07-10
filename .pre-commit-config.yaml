@@ -10,10 +10,12 @@ repos:
     rev: v0.5.1
     hooks:
       - id: go-fmt
+        exclude: ^(internal/assets/)
       - id: go-imports
         exclude: ^(internal/templates/)
       - id: no-go-testing
       - id: golangci-lint
+        exclude: ^(internal/assets/)
       - id: go-unit-tests
       # - id: validate-toml
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
