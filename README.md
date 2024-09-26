@@ -9,14 +9,20 @@
     - [watch templ file](#watch-templ-file)
     - [air hot reload](#air-hot-reload)
   - [Run](#run)
+  - [Ref](#ref)
   <!--toc:end-->
 
 ## Techs & Tools
 
-- tailwindcss
-- commitlint
-- golangci
-- hot-reload
+- Tailwindcss
+- Commitlint
+- Golangci
+- Air(Hot-reload)
+- HTMX
+- Database
+  - SQLite
+  - GORM
+- Go-Chi
 
 ## Dev
 
@@ -43,3 +49,7 @@ air
 ```bash
 task run
 ```
+
+## Ref
+
+[Link](https://github.com/stackus/todos)

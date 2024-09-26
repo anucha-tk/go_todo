@@ -1,0 +1,43 @@
+package partials
+
+import (
+	"fmt"
+	"github.com/anucha-tk/go_todo/internal/domain"
+	"strconv"
+	"time"
+)
+
+func convetIntToString(id int) string {
+	return strconv.Itoa(id)
+}
+
+func convetBoolToString(b bool) string {
+	return strconv.FormatBool(b)
+}
+
+func formatDate(t time.Time) string {
+	layout := "2006-01-02"
+	return t.Format(layout)
+}
+
+templ Row(todo *domain.Todo) {
+	<tr id="#" class="border-b dark:border-neutral-500">
+		<td class="whitespace-nowrap px-6 py-4">{ convetIntToString(todo.ID) }</td>
+		<td class="whitespace-nowrap px-6 py-4">{ todo.Description }</td>
+		<td class="whitespace-nowrap px-6 py-4">{ convetBoolToString(todo.Completed) }</td>
+		<td class="whitespace-nowrap px-6 py-4">{ formatDate(todo.CreatedAt) }</td>
+		<td class="whitespace-nowrap px-1 py-1">
+			<a class="hover:underline text-blue-700">
+				Edit
+			</a>
+		</td>
+		<td class="whitespace-nowrap px-1 py-1">
+			<a
+				hx-confirm={ fmt.Sprintf("Are you sure you want to delete id %d?", todo.ID) }
+				hx-indicator="#processing"
+				class="hover:underline text-blue-700"
+				href=""
+			>Delete</a>
+		</td>
+	</tr>
+}

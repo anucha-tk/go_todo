@@ -10,3 +10,17 @@ type Todo struct {
 	Completed   bool
 	CreatedAt   time.Time
 }
+
+type TodoRepository interface {
+	FindAll() ([]*Todo, error)
+}
+
+func NewTodo(description string) *Todo {
+	return &Todo{
+		Description: description,
+		Completed:   false,
+		CreatedAt:   time.Now(),
+	}
+}
+
+// TODO: make Completed func

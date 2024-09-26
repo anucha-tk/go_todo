@@ -12,3 +12,6 @@ node_modules
 
 # sqlite3
 gorm.db
+
+#dev
+resourse-dev.md

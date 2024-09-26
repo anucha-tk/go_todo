@@ -1,0 +1,14 @@
+package partials
+
+templ AddTodoForm() {
+	<div>
+		<button
+			class="inline-flex items-center h-8 px-4 m-2 text-sm text-blue-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800"
+			hx-post="/submit"
+			hx-prompt="Enter todo"
+			hx-confirm="Are you sure?"
+			hx-target="#response"
+		>Add </button>
+		<div id="response"></div>
+	</div>
+}
