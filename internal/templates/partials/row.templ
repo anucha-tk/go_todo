@@ -7,8 +7,8 @@ import (
 	"time"
 )
 
-func convetIntToString(id int) string {
-	return strconv.Itoa(id)
+func convetIntToString(id uint) string {
+	return strconv.FormatUint(uint64(id), 10)
 }
 
 func convetBoolToString(b bool) string {
@@ -33,6 +33,8 @@ templ Row(todo *domain.Todo) {
 		</td>
 		<td class="whitespace-nowrap px-1 py-1">
 			<a
+				hx-delete={ fmt.Sprintf("/todos/%d", todo.ID) }
+				hx-target="#todos"
 				hx-confirm={ fmt.Sprintf("Are you sure you want to delete id %d?", todo.ID) }
 				hx-indicator="#processing"
 				class="hover:underline text-blue-700"

@@ -15,3 +15,7 @@ func NewTodoService(repo domain.TodoRepository) *TodoService {
 func (s *TodoService) FindAll() ([]*domain.Todo, error) {
 	return s.repo.FindAll()
 }
+
+func (s *TodoService) Delete(id uint) error {
+	return s.repo.Delete(id)
+}

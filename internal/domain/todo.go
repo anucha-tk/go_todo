@@ -5,7 +5,7 @@ import (
 )
 
 type Todo struct {
-	ID          int
+	ID          uint
 	Description string
 	Completed   bool
 	CreatedAt   time.Time
@@ -13,6 +13,7 @@ type Todo struct {
 
 type TodoRepository interface {
 	FindAll() ([]*Todo, error)
+	Delete(id uint) error
 }
 
 func NewTodo(description string) *Todo {

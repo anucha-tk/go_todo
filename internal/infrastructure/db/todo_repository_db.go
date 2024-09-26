@@ -25,3 +25,7 @@ func (r *TodoRepositoryGORM) FindAll() ([]*domain.Todo, error) {
 	}
 	return todos, nil
 }
+
+func (r *TodoRepositoryGORM) Delete(id uint) error {
+	return r.db.Delete(&domain.Todo{}, id).Error
+}

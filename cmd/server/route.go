@@ -11,6 +11,7 @@ func routes(todoHandler *http.TodoHandler, aboutHandler *http.AboutHandler) *chi
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
 	router.Get("/", todoHandler.Home)
+	router.Delete("/todos/{todoID}", todoHandler.Delete)
 	router.Get("/about", aboutHandler.About)
 	assets.Mount(router)
 	return router
