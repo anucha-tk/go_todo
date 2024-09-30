@@ -32,7 +32,7 @@ func AboutPage() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 1)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<section class=\"flex flex-col justify-center\"><img src=\"/dist/images/avatar_info.svg\" alt=\"avatar\" class=\"h-60 mt-20\"><div id=\"container\" class=\"flex flex-col py-10 gap-4 justify-center items-center\"><div id=\"author\" class=\"flex justify-center\"><h1 class=\"text-3xl\">anucha-tk</h1></div><button class=\"bg-blue-800 h-10 w-40 rounded-xl text-white text-xl hover:bg-blue-700\"><a href=\"https://github.com/anucha-tk\" target=\"_blank\">Contect Me</a></button></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

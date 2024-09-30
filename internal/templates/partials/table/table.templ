@@ -1,6 +1,10 @@
-package partials
+package table
 
-import "github.com/anucha-tk/go_todo/internal/domain"
+import (
+	"github.com/anucha-tk/go_todo/internal/domain"
+	"github.com/anucha-tk/go_todo/internal/templates/partials"
+	"github.com/anucha-tk/go_todo/internal/templates/partials/tbody"
+)
 
 templ Table(todos []*domain.Todo) {
 	<section id="todos" class="flex flex-col item-center mx-auto w-fit">
@@ -10,22 +14,19 @@ templ Table(todos []*domain.Todo) {
 				<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
 					<div class="overflow-hidden">
 						<div class="flex justify-end">
-							@AddTodoForm()
+							@partials.AddTodoForm()
 						</div>
-						<table class="min-w-full text-left text-sm font-light">
+						<table class="min-w-full text-left text-sm font-light" id="todo_table">
 							<thead class="border-b font-medium dark:border-neutral-500">
 								<tr>
 									<th scope="col" class="px-6 py-4">#</th>
 									<th scope="col" class="px-6 py-4">Description</th>
 									<th scope="col" class="px-6 py-4">Completed</th>
 									<th scope="col" class="px-6 py-4">CreatedAt</th>
+									<th scope="col" class="px-6 py-4">UpdatedAt</th>
 								</tr>
 							</thead>
-							<tbody id="table-body">
-								for _, todo := range todos {
-									@Row(todo)
-								}
-							</tbody>
+							@tbody.TableBody(todos)
 						</table>
 					</div>
 				</div>

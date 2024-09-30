@@ -1,18 +1,24 @@
 package main
 
 import (
-	"github.com/anucha-tk/go_todo/internal/assets"
 	"github.com/anucha-tk/go_todo/internal/interfaces/http"
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
+	"github.com/anucha-tk/go_todo/internal/templates"
+	"github.com/anucha-tk/go_todo/internal/templates/pages"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
-func routes(todoHandler *http.TodoHandler, aboutHandler *http.AboutHandler) *chi.Mux {
-	router := chi.NewRouter()
-	router.Use(middleware.Logger)
-	router.Get("/", todoHandler.Home)
-	router.Delete("/todos/{todoID}", todoHandler.Delete)
-	router.Get("/about", aboutHandler.About)
-	assets.Mount(router)
-	return router
+func routes(app *fiber.App, todoHandler *http.TodoHandler, aboutHandler *http.AboutHandler) {
+	app.Use(logger.New())
+
+	app.Get("/", todoHandler.Home)
+	app.Post("/todos", todoHandler.Create)
+	app.Delete("/todos/:id", todoHandler.Delete)
+	app.Get("/about", aboutHandler.About)
+	app.Use(notFoundMiddleware)
+}
+
+func notFoundMiddleware(c *fiber.Ctx) error {
+	c.Status(fiber.StatusNotFound)
+	return templates.Render(c, pages.Notfound())
 }

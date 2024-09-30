@@ -2,12 +2,16 @@ package pages
 
 import (
 	"github.com/anucha-tk/go_todo/internal/domain"
-	"github.com/anucha-tk/go_todo/internal/templates/partials"
+	"github.com/anucha-tk/go_todo/internal/templates/partials/table"
 	"github.com/anucha-tk/go_todo/internal/templates/shared"
 )
 
 templ HomePage(todos []*domain.Todo) {
 	@shared.Page("Home") {
-		@partials.Table(todos)
+		<section id="hero" class="flex flex-col items-center gap-8">
+			<img src="/images/todo.svg" alt="todo" class="h-40 mt-10"/>
+			<h1 class="text-4xl font-bold text-blue-700">TODO APP</h1>
+		</section>
+		@table.Table(todos)
 	}
 }

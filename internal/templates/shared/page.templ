@@ -8,21 +8,18 @@ templ Page(title string) {
 		<head>
 			<meta charset="UTF-8"/>
 			<title>{ title }</title>
-			<link rel="icon" type="image/svg+xml" href="/dist/favicon.ico"/>
+			<link rel="icon" type="image/svg+xml" href="/favicons/favicon.ico"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
 			<meta name="robots" content="index, follow"/>
 			<meta name="revisit-after" content="7 days"/>
 			<meta name="language" content="English"/>
 			<script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
-			<link rel="stylesheet" href="/dist/styles.css"/>
+			<script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+			<link href="/css/output.css" rel="stylesheet"/>
 		</head>
 		<body class="h-full bg-gray-50 font-mono">
 			@nav.Nav()
 			<section class="mx-auto my-2">
-				<section id="hero" class="flex flex-col items-center gap-8">
-					<img src="/dist/images/todo.svg" alt="todo" class="h-40 mt-10"/>
-					<h1 class="text-4xl font-bold text-blue-700">TODO APP</h1>
-				</section>
 				{ children... }
 			</section>
 		</body>

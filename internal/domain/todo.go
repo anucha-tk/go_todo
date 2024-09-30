@@ -9,19 +9,11 @@ type Todo struct {
 	Description string
 	Completed   bool
 	CreatedAt   time.Time
+	UpdatedAt   time.Time
 }
 
 type TodoRepository interface {
 	FindAll() ([]*Todo, error)
+	Create(todo Todo) (Todo, error)
 	Delete(id uint) error
 }
-
-func NewTodo(description string) *Todo {
-	return &Todo{
-		Description: description,
-		Completed:   false,
-		CreatedAt:   time.Now(),
-	}
-}
-
-// TODO: make Completed func

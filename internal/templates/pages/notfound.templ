@@ -1,0 +1,11 @@
+package pages
+
+import "github.com/anucha-tk/go_todo/internal/templates/shared"
+
+templ Notfound() {
+	@shared.Page("Home") {
+		<section id="hero" class="flex flex-col items-center gap-8">
+			<img src="/images/notfound.svg" alt="notfound" class="h-40 mt-10"/>
+		</section>
+	}
+}

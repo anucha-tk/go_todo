@@ -19,10 +19,12 @@
 - Golangci
 - Air(Hot-reload)
 - HTMX
+- Templ
 - Database
   - SQLite
   - GORM
-- Go-Chi
+- Go-fiber
+- Validation
 
 ## Dev
 

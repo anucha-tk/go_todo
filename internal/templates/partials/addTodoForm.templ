@@ -1,14 +1,33 @@
 package partials
 
 templ AddTodoForm() {
-	<div>
-		<button
-			class="inline-flex items-center h-8 px-4 m-2 text-sm text-blue-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800"
-			hx-post="/submit"
-			hx-prompt="Enter todo"
-			hx-confirm="Are you sure?"
-			hx-target="#response"
-		>Add </button>
-		<div id="response"></div>
-	</div>
+	<form
+		class="flex"
+		hx-ext="json-enc"
+		hx-post="/todos"
+		hx-target="#table-body"
+		hx-swap="outerHTML"
+		hx-include="#todo-description"
+		hx-on="htmx:afterRequest: resetForm()"
+	>
+		<label class="flex items-center">
+			<span class="text-lg font-bold">Add Todo</span>
+			<input
+				type="text"
+				id="todo-description"
+				name="description"
+				class="ml-2 grow"
+				placeholder="Enter todo"
+				required
+				minlength="3"
+				maxlength="20"
+			/>
+		</label>
+		<button type="submit">Submit</button>
+	</form>
+	<script>
+		function resetForm() {
+			document.getElementById('todo-description').value = '';
+		}
+	</script>
 }

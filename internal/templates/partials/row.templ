@@ -21,11 +21,12 @@ func formatDate(t time.Time) string {
 }
 
 templ Row(todo *domain.Todo) {
-	<tr id="#" class="border-b dark:border-neutral-500">
+	<tr id="todo-{{convIntToString(todo.ID)}}" class="border-b dark:border-neutral-500">
 		<td class="whitespace-nowrap px-6 py-4">{ convetIntToString(todo.ID) }</td>
 		<td class="whitespace-nowrap px-6 py-4">{ todo.Description }</td>
 		<td class="whitespace-nowrap px-6 py-4">{ convetBoolToString(todo.Completed) }</td>
 		<td class="whitespace-nowrap px-6 py-4">{ formatDate(todo.CreatedAt) }</td>
+		<td class="whitespace-nowrap px-6 py-4">{ formatDate(todo.UpdatedAt) }</td>
 		<td class="whitespace-nowrap px-1 py-1">
 			<a class="hover:underline text-blue-700">
 				Edit
@@ -34,11 +35,11 @@ templ Row(todo *domain.Todo) {
 		<td class="whitespace-nowrap px-1 py-1">
 			<a
 				hx-delete={ fmt.Sprintf("/todos/%d", todo.ID) }
-				hx-target="#todos"
+				hx-target="#table-body"
 				hx-confirm={ fmt.Sprintf("Are you sure you want to delete id %d?", todo.ID) }
 				hx-indicator="#processing"
 				class="hover:underline text-blue-700"
-				href=""
+				hx-swap="outerHTML"
 			>Delete</a>
 		</td>
 	</tr>

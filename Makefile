@@ -20,4 +20,4 @@ dev-templ:
 	templ generate -watch -proxy=http://localhost:3000
 
 dev-tailwind:
-	npx tailwindcss -i ./internal/assets/tailwind.css -o ./internal/assets/dist/styles.css --watch
+	npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch

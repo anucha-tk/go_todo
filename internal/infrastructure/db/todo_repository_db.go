@@ -26,6 +26,14 @@ func (r *TodoRepositoryGORM) FindAll() ([]*domain.Todo, error) {
 	return todos, nil
 }
 
+func (r *TodoRepositoryGORM) Create(todo domain.Todo) (domain.Todo, error) {
+	err := r.db.Create(&todo).Error
+	if err != nil {
+		return domain.Todo{}, err
+	}
+	return todo, nil
+}
+
 func (r *TodoRepositoryGORM) Delete(id uint) error {
 	return r.db.Delete(&domain.Todo{}, id).Error
 }

@@ -2,15 +2,12 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
-	"net/http"
-	"os"
-	"time"
 
 	"github.com/anucha-tk/go_todo/internal/application"
 	"github.com/anucha-tk/go_todo/internal/infrastructure/db"
 	httphandler "github.com/anucha-tk/go_todo/internal/interfaces/http"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
@@ -28,18 +25,10 @@ func main() {
 	todoHandler := httphandler.NewTodoHandler(todoService)
 	aboutHandler := httphandler.NewAboutHandler()
 
-	router := routes(todoHandler, aboutHandler)
+	app := fiber.New()
+	app.Static("/", "./assets/")
 
-	server := &http.Server{
-		Addr:              "localhost" + port,
-		Handler:           router,
-		ReadHeaderTimeout: time.Second * 5,
-	}
+	routes(app, todoHandler, aboutHandler)
 
-	log.Printf("Listening on http://localhost%s\n", port)
-
-	if err := server.ListenAndServe(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	log.Fatal(app.Listen(":3000"))
 }

@@ -1,0 +1,14 @@
+package tbody
+
+import (
+	"github.com/anucha-tk/go_todo/internal/domain"
+	"github.com/anucha-tk/go_todo/internal/templates/partials"
+)
+
+templ TableBody(todos []*domain.Todo) {
+	<tbody id="table-body">
+		for _, todo := range todos {
+			@partials.Row(todo)
+		}
+	</tbody>
+}

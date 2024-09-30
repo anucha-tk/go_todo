@@ -10,7 +10,7 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import (
 	"github.com/anucha-tk/go_todo/internal/domain"
-	"github.com/anucha-tk/go_todo/internal/templates/partials"
+	"github.com/anucha-tk/go_todo/internal/templates/partials/table"
 	"github.com/anucha-tk/go_todo/internal/templates/shared"
 )
 
@@ -44,7 +44,11 @@ func HomePage(todos []*domain.Todo) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = partials.Table(todos).Render(ctx, templ_7745c5c3_Buffer)
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<section id=\"hero\" class=\"flex flex-col items-center gap-8\"><img src=\"/images/todo.svg\" alt=\"todo\" class=\"h-40 mt-10\"><h1 class=\"text-4xl font-bold text-blue-700\">TODO APP</h1></section>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = table.Table(todos).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
