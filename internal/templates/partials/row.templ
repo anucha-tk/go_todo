@@ -27,24 +27,24 @@ templ Row(todo *domain.Todo) {
 		<td class="whitespace-nowrap px-6 py-4">{ convetBoolToString(todo.Completed) }</td>
 		<td class="whitespace-nowrap px-6 py-4">{ formatDate(todo.CreatedAt) }</td>
 		<td class="whitespace-nowrap px-6 py-4">{ formatDate(todo.UpdatedAt) }</td>
-		<td class="whitespace-nowrap px-6 py-4">
-			<span
+		<td class="whitespace-nowrap px-4 py-2">
+			<button
 				hx-get={ fmt.Sprintf("/todos/%d/edit", todo.ID) }
 				hx-target={ fmt.Sprintf("#todo-datarow-%s", convetIntToString(todo.ID)) }
 				hx-swap="outerHTML"
 				hx-indicator="#processing"
-				class="hover:underline text-blue-700 cursor-pointer"
+				class="bg-blue-500 hover:bg-blue-600 text-white px-1.5 py-0.5 rounded-md"
 			>
 				Edit
-			</span>
-			<span
+			</button>
+			<button
 				hx-delete={ fmt.Sprintf("/todos/%d", todo.ID) }
 				hx-target="#table-body"
 				hx-confirm={ fmt.Sprintf("Are you sure you want to delete id %d?", todo.ID) }
 				hx-indicator="#processing"
-				class="hover:underline text-blue-700 cursor-pointer"
+				class="bg-red-500 hover:bg-red-600 text-white px-1.5 py-0.5 rounded-md"
 				hx-swap="outerHTML"
-			>Delete</span>
+			>Delete</button>
 		</td>
 	</tr>
 }

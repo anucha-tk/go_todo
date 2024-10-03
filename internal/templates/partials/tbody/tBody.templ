@@ -6,7 +6,7 @@ import (
 )
 
 templ TableBody(todos []*domain.Todo) {
-	<tbody id="table-body">
+	<tbody id="table-body" class="text-gray-600">
 		for _, todo := range todos {
 			@partials.Row(todo)
 		}

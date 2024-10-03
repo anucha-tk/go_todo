@@ -17,11 +17,11 @@ templ InlineEditForm(todo *domain.Todo) {
 				required
 				minlength="3"
 				maxlength="20"
-				class="border border-gray-300 p-1"
+				class="border border-gray-300 p-1 rounded"
 			/>
 		</td>
-		<td class="whitespace-nowrap px-6 py-4">
-			<select id="edit-completed" name="completed" class="border border-gray-300 p-1">
+		<td class="whitespace-nowrap px-6 py-4 r">
+			<select id="edit-completed" name="completed" class="border border-gray-300 p-1 rounded">
 				<option value="true" selected?={ !todo.Completed }>True</option>
 				<option value="false" selected?={ !todo.Completed }>False</option>
 			</select>
@@ -34,7 +34,7 @@ templ InlineEditForm(todo *domain.Todo) {
 				hx-put={ fmt.Sprintf("/todos/%d", todo.ID) }
 				hx-target={ fmt.Sprintf("#todo-datarow-%s", convetIntToString(todo.ID)) }
 				hx-swap="outerHTML"
-				class="hover:underline text-blue-700 cursor-pointer"
+				class="bg-blue-500 hover:bg-blue-600 text-white px-1.5 py-0.5 rounded-md"
 				hx-ext="json-enc"
 				hx-include="[id='edit-description'], [id='edit-completed']"
 			>Save</button>
@@ -43,7 +43,7 @@ templ InlineEditForm(todo *domain.Todo) {
 				hx-get={ fmt.Sprintf("/todos/%d/view", todo.ID) }
 				hx-target={ fmt.Sprintf("#todo-datarow-%s", convetIntToString(todo.ID)) }
 				hx-swap="outerHTML"
-				class="hover:underline text-blue-700 cursor-pointer"
+				class="text-gray-600 px-1.5 py-0.5 rounded-md"
 			>Cancel</button>
 		</td>
 	</tr>

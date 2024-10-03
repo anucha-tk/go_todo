@@ -1,5 +1,11 @@
 # TODO APP
 
+Simple todo project base-on DDD(domain driven design) with Golang + Tailwindcss + HTMX
+
+<p align="center">
+  <img src="doc/preview.gif" alt="animated" />
+</p></p>
+
 <!--toc:start-->
 
 - [TODO APP](#todo-app)
@@ -9,7 +15,6 @@
     - [watch templ file](#watch-templ-file)
     - [air hot reload](#air-hot-reload)
   - [Run](#run)
-  - [Ref](#ref)
   <!--toc:end-->
 
 ## Techs & Tools
@@ -51,7 +56,3 @@ air
 ```bash
 task run
 ```
-
-## Ref
-
-[Link](https://github.com/stackus/todos)

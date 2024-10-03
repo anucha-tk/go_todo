@@ -32,7 +32,7 @@ func Table(todos []*domain.Todo) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 1)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<section id=\"todos\" class=\"flex flex-col item-center mx-auto w-fit\"><div id=\"processing\" class=\"htmx-indicator\">Processing...</div><div class=\"flex flex-col\"><div><div class=\"inline-block min-w-full py-2 sm:px-6 lg:px-8\"><div class=\"overflow-hidden\"><div class=\"flex justify-end\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -40,7 +40,7 @@ func Table(todos []*domain.Todo) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 2)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><table class=\"min-w-full text-left text-sm font-light\" id=\"todo_table\"><thead class=\"border-b font-medium dark:border-neutral-500 text-gray-800\"><tr><th scope=\"col\" class=\"px-6 py-4\">#</th><th scope=\"col\" class=\"px-6 py-4\">Description</th><th scope=\"col\" class=\"px-6 py-4\">Completed</th><th scope=\"col\" class=\"px-6 py-4\">CreatedAt</th><th scope=\"col\" class=\"px-6 py-4\">UpdatedAt</th><th scope=\"col\" class=\"px-6 py-4\">Actions</th></tr></thead>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -48,7 +48,7 @@ func Table(todos []*domain.Todo) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 3)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</table></div></div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
