@@ -85,36 +85,35 @@ func (h *TodoHandler) Edit(c *fiber.Ctx) error {
 	return templates.Render(c, partials.InlineEditForm(todo))
 }
 
-func (h *TodoHandler) UpdateDescription(c *fiber.Ctx) error {
-	var error error
-	payload := new(models.TodoUpdate)
-	error = c.BodyParser(&payload)
-	if error != nil {
-		return common.ResponseError(c, fiber.StatusInternalServerError, "Error Body Parser", error)
+func (h *TodoHandler) Update(c *fiber.Ctx) error {
+	var payload models.TodoUpdate
+	if err := c.BodyParser(&payload); err != nil {
+		return common.ResponseError(c, fiber.StatusInternalServerError, "Error parsing request body", err)
 	}
-	errors := models.ValidateStruct(payload)
-	if errors != nil {
-		return common.ResponseError(c, fiber.StatusUnprocessableEntity, "Error invalid body", errors)
+
+	if validationErrors := models.ValidateStruct(payload); validationErrors != nil {
+		return common.ResponseError(c, fiber.StatusUnprocessableEntity, "Invalid request body", validationErrors)
 	}
+
 	todoID, err := strconv.Atoi(c.Params("id"))
 	if err != nil || todoID < 0 {
-		return common.ResponseError(c, fiber.StatusBadRequest, "Invalid ID", err)
+		return common.ResponseError(c, fiber.StatusBadRequest, "Invalid todo ID", err)
 	}
 	todo, err := h.service.Find(uint(todoID))
 	if err != nil {
-		return common.ResponseError(c, fiber.StatusBadRequest, "Todo not found", err)
+		return common.ResponseError(c, fiber.StatusNotFound, "Todo not found", err)
 	}
 
-	com, err := strconv.ParseBool(payload.Completed)
+	completed, err := strconv.ParseBool(payload.Completed)
 	if err != nil {
-		return common.ResponseError(c, fiber.StatusBadRequest, "Completed field error", err)
+		return common.ResponseError(c, fiber.StatusBadRequest, "Invalid completed field", err)
 	}
 
-	result, err := h.service.Update(*todo, payload.Description, com)
+	updatedTodo, err := h.service.Update(*todo, payload.Description, completed)
 	if err != nil {
-		return common.ResponseError(c, fiber.StatusInternalServerError, "Update error", err)
+		return common.ResponseError(c, fiber.StatusInternalServerError, "Failed to update todo", err)
 	}
-	return templates.Render(c, partials.Row(&result))
+	return templates.Render(c, partials.Row(&updatedTodo))
 }
 
 func (h *TodoHandler) Delete(c *fiber.Ctx) error {
