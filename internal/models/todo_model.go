@@ -7,6 +7,10 @@ import (
 type TodoInput struct {
 	Description string `json:"description" validate:"required,min=3,max=20"`
 }
+type TodoUpdate struct {
+	Description string `json:"description" validate:"required,min=3,max=20"`
+	Completed   string `json:"completed" validate:"required,boolean"`
+}
 
 var validate = validator.New()
 

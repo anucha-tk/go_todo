@@ -26,7 +26,7 @@ func AddTodoForm() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<form class=\"flex\" hx-ext=\"json-enc\" hx-post=\"/todos\" hx-target=\"#table-body\" hx-swap=\"outerHTML\" hx-include=\"#todo-description\" hx-on=\"htmx:afterRequest: resetForm()\"><label class=\"flex items-center\"><span class=\"text-lg font-bold\">Add Todo</span> <input type=\"text\" id=\"todo-description\" name=\"description\" class=\"ml-2 grow\" placeholder=\"Enter todo\" required minlength=\"3\" maxlength=\"20\"></label> <button type=\"submit\">Submit</button></form><script>\n\t\tfunction resetForm() {\n\t\t\tdocument.getElementById('todo-description').value = '';\n\t\t}\n\t</script>")
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 1)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

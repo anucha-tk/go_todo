@@ -40,7 +40,7 @@ func Notfound() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<section id=\"hero\" class=\"flex flex-col items-center gap-8\"><img src=\"/images/notfound.svg\" alt=\"notfound\" class=\"h-40 mt-10\"></section>")
+			templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 1)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

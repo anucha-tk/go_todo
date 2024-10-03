@@ -26,7 +26,7 @@ func Nav() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav id=\"nav\" class=\"bg-gray-800\"><div id=\"container\" class=\"mx-auto max-w-7xl px-2 sm:px-6 lg:px-8\"><div class=\"flex h-20 items-center gap-4\"><img class=\"h-16 w-auto\" src=\"https://img.icons8.com/?size=100&amp;id=114426&amp;format=png&amp;color=000000\" alt=\"todo icon\"><div class=\"flex-grow flex justify-center items-center gap-4\"><a href=\"/\" class=\"rounded-md px-3 py-2 text-3xl font-medium text-gray-300 hover:bg-gray-700 hover:text-white\">Home</a> <a href=\"/about\" class=\"rounded-md px-3 py-2 text-3xl font-medium text-gray-300 hover:bg-gray-700 hover:text-white\">About</a></div></div></div></nav>")
+		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 1)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -14,6 +14,8 @@ type Todo struct {
 
 type TodoRepository interface {
 	FindAll() ([]*Todo, error)
+	Find(id uint) (*Todo, error)
 	Create(todo Todo) (Todo, error)
+	Update(todo Todo, description string, complated bool) (Todo, error)
 	Delete(id uint) error
 }

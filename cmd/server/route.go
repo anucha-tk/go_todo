@@ -12,7 +12,10 @@ func routes(app *fiber.App, todoHandler *http.TodoHandler, aboutHandler *http.Ab
 	app.Use(logger.New())
 
 	app.Get("/", todoHandler.Home)
+	app.Get("/todos/:id/view", todoHandler.View)
+	app.Get("/todos/:id/edit", todoHandler.Edit)
 	app.Post("/todos", todoHandler.Create)
+	app.Put("/todos/:id", todoHandler.UpdateDescription)
 	app.Delete("/todos/:id", todoHandler.Delete)
 	app.Get("/about", aboutHandler.About)
 	app.Use(notFoundMiddleware)
